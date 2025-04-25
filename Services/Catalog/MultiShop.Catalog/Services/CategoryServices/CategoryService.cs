@@ -20,7 +20,7 @@ namespace MultiShop.Catalog.Services.CategoryServices
             _mapper = mapper;
         }
 
-        public async Task CreateCataegoryAsync(CreateCategoryDto createCategoryDto)
+        public async Task CreateCatagoryAsync(CreateCategoryDto createCategoryDto)
         {
             var value = _mapper.Map<Category>(createCategoryDto);
             await _categoryCollection.InsertOneAsync(value);
