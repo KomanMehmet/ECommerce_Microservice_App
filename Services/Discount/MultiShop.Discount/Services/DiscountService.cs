@@ -65,7 +65,7 @@ namespace MultiShop.Discount.Services
 
             using (var connection = _dapperContext.CreateConnection()) 
             {
-                var value = await connection.QueryFirstOrDefaultAsync<GetByIdDiscountCouponDto>(query);
+                var value = await connection.QueryFirstOrDefaultAsync<GetByIdDiscountCouponDto>(query, parameters);
                 return value;
             }
         }
@@ -76,6 +76,7 @@ namespace MultiShop.Discount.Services
 
             var parameters = new DynamicParameters();
 
+            parameters.Add("@couponId", updateCouponDto.CouponID);
             parameters.Add("@code", updateCouponDto.Code);
             parameters.Add("@rate", updateCouponDto.Rate);
             parameters.Add("@isActive", updateCouponDto.IsActive);
