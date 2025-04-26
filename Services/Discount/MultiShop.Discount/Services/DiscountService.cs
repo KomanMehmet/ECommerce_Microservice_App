@@ -13,7 +13,7 @@ namespace MultiShop.Discount.Services
             _dapperContext = dapperContext;
         }
 
-        public async Task CreateCouponAsync(CreateCouponDto createCouponDto)
+        public async Task CreateDiscountCouponAsync(CreateDiscountCouponDto createCouponDto)
         {
             string query = "insert into Coupons (Code, Rate, IsActive, ValidDate) values (@code, @rate, @isActive, @validDate)";
 
@@ -30,7 +30,7 @@ namespace MultiShop.Discount.Services
             }
         }
 
-        public async Task DeleteCouponAsync(int couponId)
+        public async Task DeleteDiscountCouponAsync(int couponId)
         {
             string query = "delete from Coupons where CouponID = @couponId";
 
@@ -44,18 +44,18 @@ namespace MultiShop.Discount.Services
             }   
         }
 
-        public async Task<List<ResultCouponDto>> GetAllCouponAsync()
+        public async Task<List<ResultDiscountCouponDto>> GetAllDiscountCouponAsync()
         {
             string query = "select * from Coupons";
 
             using (var connection = _dapperContext.CreateConnection()) 
             {
-                var values = await connection.QueryAsync<ResultCouponDto>(query);
+                var values = await connection.QueryAsync<ResultDiscountCouponDto>(query);
                 return values.ToList();
             }   
         }
 
-        public async Task<GetByIdCouponDto> GetByIdCouponAsync(int couponId)
+        public async Task<GetByIdDiscountCouponDto> GetByIdDiscountCouponAsync(int couponId)
         {
             string query = "select * from Coupons where CouponID = @couponId";
 
@@ -65,12 +65,12 @@ namespace MultiShop.Discount.Services
 
             using (var connection = _dapperContext.CreateConnection()) 
             {
-                var value = await connection.QueryFirstOrDefaultAsync<GetByIdCouponDto>(query);
+                var value = await connection.QueryFirstOrDefaultAsync<GetByIdDiscountCouponDto>(query);
                 return value;
             }
         }
 
-        public async Task UpdateCouponAsync(UpdateCouponDto updateCouponDto)
+        public async Task UpdateDiscountCouponAsync(UpdateDiscountCouponDto updateCouponDto)
         {
             string query = "update Coupons set Code=@code,Rate=@rate,IsActive= @isActive,ValidDate=@validDate where CouponID = @couponId";
 
