@@ -9,9 +9,9 @@ namespace MultiShop.Catalog.Services.ProductImageServices
     public class ProductImageService : IProductImageService
     {
         private readonly IMongoCollection<ProductImage> _productImageCollection;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
 
-        public ProductImageService(Mapper mapper, IDatabaseSettings databaseSettings)
+        public ProductImageService(IMapper mapper, IDatabaseSettings databaseSettings)
         {
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);

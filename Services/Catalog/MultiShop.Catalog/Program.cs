@@ -1,6 +1,4 @@
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using MultiShop.Catalog.Mapping;
 using MultiShop.Catalog.Services.CategoryServices;
 using MultiShop.Catalog.Services.ProductDetailDetailServices;
 using MultiShop.Catalog.Services.ProductDetailServices;
