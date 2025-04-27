@@ -1,8 +1,6 @@
-﻿using MultiShop.Order.Domain.Entities;
-
-namespace MultiShop.Order.Application.Features.CQRS.Results.AddressResults
+﻿namespace MultiShop.Order.Application.Features.CQRS.Results.OrderDetailResults
 {
-    public class GetOrderDetailQueryResult
+    public class GetOrderDetailByIdQueryResult
     {
         public int OrderDetailID { get; set; }
 
@@ -17,7 +15,5 @@ namespace MultiShop.Order.Application.Features.CQRS.Results.AddressResults
         public decimal ProductTotalPrice { get; set; }
 
         public int OrderingId { get; set; }
-
-        public Ordering Ordering { get; set; }
     }
 }
