@@ -13,7 +13,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
             _orderDetailRepository = orderDetailRepository;
         }
 
-        public async Task Handle(CreateOrderDetailCommand createOrderDetailCommand, CancellationToken cancellationToken)
+        public async Task Handle(CreateOrderDetailCommand createOrderDetailCommand)
         {
             await _orderDetailRepository.CreateAsync(new OrderDetail
             {

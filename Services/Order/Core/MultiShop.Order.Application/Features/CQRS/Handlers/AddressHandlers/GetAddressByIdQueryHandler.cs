@@ -14,7 +14,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
             _addressRepository = addressRepository;
         }
 
-        public async Task<GetAddressByIdQueryResult> Handle(GetAddressByIdQuery getAddressByIdQuery, CancellationToken cancellationToken)
+        public async Task<GetAddressByIdQueryResult> Handle(GetAddressByIdQuery getAddressByIdQuery)
         {
             var values = await _addressRepository.GetByIdAsync(getAddressByIdQuery.Id);
 

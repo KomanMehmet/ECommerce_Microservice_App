@@ -13,7 +13,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
             _addressRepository = addressRepository;
         }
 
-        public async Task Handle(UpdateAddressCommand updateAddressCommand, CancellationToken cancellationToken)
+        public async Task Handle(UpdateAddressCommand updateAddressCommand)
         {
             var value = await _addressRepository.GetByIdAsync(updateAddressCommand.AddressID);
 
