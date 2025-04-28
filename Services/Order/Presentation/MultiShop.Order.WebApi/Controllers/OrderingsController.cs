@@ -56,4 +56,5 @@ namespace MultiShop.Order.WebApi.Controllers
 
             return Ok("Ordering removed successfully.");
         }
+    }
 }
