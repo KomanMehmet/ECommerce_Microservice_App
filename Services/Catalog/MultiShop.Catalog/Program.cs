@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using MultiShop.Catalog.Services.CategoryServices;
 using MultiShop.Catalog.Services.ProductDetailDetailServices;
@@ -11,6 +12,15 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 //Yeni eklenenler
+//jwt ile ilgili
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.Authority = builder.Configuration["IdentityServerURL"];//appsettingsjson'a da eklemeyi unutma.
+    opt.Audience = "ResourceCatalog";//identityserver'ýn configdeki ismi.
+    opt.RequireHttpsMetadata = false;
+});
+//jwt ile ilgili
+
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
@@ -42,6 +52,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();//jwl ile iligli ekle.
 
 app.UseAuthorization();
 
