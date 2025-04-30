@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using MultiShop.Order.Application.Interfaces;
@@ -9,6 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 //Yeni eklenenler
+//Jwt ile ilgili
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.Authority = builder.Configuration["IdentityServerURL"];//appsettingsjson'a da eklemeyi unutma.
+    opt.Audience = "ResourceOrder";//identityserver'ýn configdeki ismi.
+    opt.RequireHttpsMetadata = false;
+});
+//jwt ile ilgili
+
 builder.Services.AddDbContext<OrderContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
@@ -44,6 +54,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();//yeni eklendi jwt ile ilgili
 
 app.UseAuthorization();
 
