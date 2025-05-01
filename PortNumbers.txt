@@ -2,3 +2,4 @@ Identity - 5001
 Catalog - 7227
 Discount - 7228
 Order - 7229
+Cargo - 7230

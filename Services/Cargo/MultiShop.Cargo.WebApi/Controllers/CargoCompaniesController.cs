@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Cargo.BusinessLayer.Abstract;
 using MultiShop.Cargo.DtoLayer.Dtos.CargoCompanyDtos;
@@ -11,10 +11,12 @@ namespace MultiShop.Cargo.WebApi.Controllers
     public class CargoCompaniesController : ControllerBase
     {
         private readonly ICargoCompanyService _cargoCompanyService;
+        private readonly IMapper _mapper;
 
-        public CargoCompaniesController(ICargoCompanyService cargoCompanyService)
+        public CargoCompaniesController(ICargoCompanyService cargoCompanyService, IMapper mapper)
         {
             _cargoCompanyService = cargoCompanyService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -22,26 +24,27 @@ namespace MultiShop.Cargo.WebApi.Controllers
         {
             var values = _cargoCompanyService.TGetAll();
 
-            return Ok(values);
+            var result = _mapper.Map<List<ResultCargoCompanyDto>>(values);
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetCargoCompanyById(int id)
         {
-            var values = _cargoCompanyService.TGetById(id);
+            var value = _cargoCompanyService.TGetById(id);
 
-            return Ok(values);
+            var result = _mapper.Map<GetByIdCargoCompanyDto>(value);
+
+            return Ok(result);
         }
 
         [HttpPost]
         public IActionResult CreateCargoCompany(CreateCargoCompanyDto createCargoCompanyDto)
         {
-            CargoCompany cargoCompany = new CargoCompany
-            {
-                CargoCompanyName = createCargoCompanyDto.CargoCompanyName
-            };
+            var values = _mapper.Map<CargoCompany>(createCargoCompanyDto);
 
-            _cargoCompanyService.TInsert(cargoCompany);
+            _cargoCompanyService.TInsert(values);
 
             return Ok("Cargo company created successfully.");
         }
@@ -49,7 +52,7 @@ namespace MultiShop.Cargo.WebApi.Controllers
         [HttpDelete]
         public IActionResult RemoveCargoCompany(int id)
         {
-            _cargoCompanyService.TGetById(id);
+            _cargoCompanyService.TDelete(id);
 
             return Ok("Cargo company removed successfully.");
         }
@@ -57,13 +60,9 @@ namespace MultiShop.Cargo.WebApi.Controllers
         [HttpPut]
         public IActionResult UpdateCargoCompany(UpdateCargoCompanyDto updateCargoCompanyDto)
         {
-            CargoCompany cargoCompany = new CargoCompany
-            {
-                CargoCompanyID = updateCargoCompanyDto.CargoCompanyID,
-                CargoCompanyName = updateCargoCompanyDto.CargoCompanyName
-            };
+            var value = _mapper.Map<CargoCompany>(updateCargoCompanyDto);
 
-            _cargoCompanyService.TUpdate(cargoCompany);
+            _cargoCompanyService.TUpdate(value);
 
             return Ok("Cargo company updated successfully.");
         }
