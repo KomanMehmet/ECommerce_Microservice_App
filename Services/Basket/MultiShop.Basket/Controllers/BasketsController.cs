@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MultiShop.Basket.Dtos;
+using MultiShop.Basket.LoginServices;
+using MultiShop.Basket.Services;
 
 namespace MultiShop.Basket.Controllers
 {
@@ -6,5 +9,39 @@ namespace MultiShop.Basket.Controllers
     [ApiController]
     public class BasketsController : ControllerBase
     {
+        private readonly IBasketService _basketService;
+        private readonly ILoginService _loginService;
+
+        public BasketsController(IBasketService basketService, ILoginService loginSercie)
+        {
+            _basketService = basketService;
+            _loginService = loginSercie;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMyBasketDetail()
+        {
+            var values = await _basketService.GetBasket(_loginService.GetUserID);
+
+            return Ok(values);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveMyBasket(BasketTotalDto basketTotalDto)
+        {
+            basketTotalDto.UserID = _loginService.GetUserID;
+
+            await _basketService.SaveBasket(basketTotalDto);
+
+            return Ok("Successfully saved basket.");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> RemoveBasket()
+        {
+            await _basketService.DeleteBasket(_loginService.GetUserID);
+
+            return Ok("Successfully delete basket");
+        }
     }
 }
