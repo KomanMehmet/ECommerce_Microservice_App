@@ -21,6 +21,8 @@ namespace MultiShop.Basket.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMyBasketDetail()
         {
+            var user = User.Claims;//sisteme girmiş olan tokena ait bilgileri verecek.
+
             var values = await _basketService.GetBasket(_loginService.GetUserID);
 
             return Ok(values);
