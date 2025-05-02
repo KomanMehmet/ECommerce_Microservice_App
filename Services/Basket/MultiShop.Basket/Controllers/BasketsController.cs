@@ -23,7 +23,7 @@ namespace MultiShop.Basket.Controllers
         {
             var user = User.Claims;//sisteme girmiş olan tokena ait bilgileri verecek.
 
-            var values = await _basketService.GetBasket(_loginService.GetUserID);
+            var values = await _basketService.GetBasket(_loginService.GetUserId);
 
             return Ok(values);
         }
@@ -31,7 +31,7 @@ namespace MultiShop.Basket.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveMyBasket(BasketTotalDto basketTotalDto)
         {
-            basketTotalDto.UserID = _loginService.GetUserID;
+            basketTotalDto.UserID = _loginService.GetUserId;
 
             await _basketService.SaveBasket(basketTotalDto);
 
@@ -41,7 +41,7 @@ namespace MultiShop.Basket.Controllers
         [HttpDelete]
         public async Task<IActionResult> RemoveBasket()
         {
-            await _basketService.DeleteBasket(_loginService.GetUserID);
+            await _basketService.DeleteBasket(_loginService.GetUserId);
 
             return Ok("Successfully delete basket");
         }
