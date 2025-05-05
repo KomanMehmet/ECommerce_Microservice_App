@@ -1,0 +1,48 @@
+﻿@{
+    var createMessage = TempData["CreateSuccess"]?.ToString();
+    var updateMessage = TempData["UpdateSuccess"]?.ToString();
+    var redirectUrl = ""; // Hangi sayfaya yönlenecekse o
+    var alertTitle = "";
+    var alertText = "";
+}
+
+@if (!string.IsNullOrEmpty(createMessage))
+{
+    redirectUrl = "/Admin/Category/Index";
+    alertTitle = "Eklendi!";
+    alertText = createMessage;
+}
+else if (!string.IsNullOrEmpty(updateMessage))
+{
+    redirectUrl = "/Admin/Category/Index";
+    alertTitle = "Güncellendi!";
+    alertText = updateMessage;
+}
+
+@if (!string.IsNullOrEmpty(alertText))
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '@alertTitle',
+            text: '@alertText',
+            confirmButtonColor: '#3085d6'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@redirectUrl';
+            }
+        });
+    </script>
+}
+
+@if (ViewBag.DeleteSuccess != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Silindi!',
+            text: '@ViewBag.DeleteSuccess',
+            confirmButtonColor: '#3085d6'
+        });
+    </script>
+}

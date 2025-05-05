@@ -68,7 +68,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             if(responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Category", new { area = "Admin" });
+                TempData["CreateSuccess"] = "Kategori başarıyla eklendi.";
+
+                //return RedirectToAction("Index", "Category", new { area = "Admin" });
+                return View();
             }
 
             return View();
@@ -83,6 +86,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             if (responseMessage.IsSuccessStatusCode)
             {
+                TempData["DeleteSuccess"] = "Kategori başarıyla silindi.";
+
                 return RedirectToAction("Index", "Category", new { area = "Admin" });
             }
 
@@ -128,7 +133,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             if(responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Category", new { area = "Admin" });
+                TempData["UpdateSuccess"] = "Kategori başarıyla güncellendi.";
+
+                //return RedirectToAction("Index", "Category", new { area = "Admin" });
+                return View();
             }
 
             return View();
