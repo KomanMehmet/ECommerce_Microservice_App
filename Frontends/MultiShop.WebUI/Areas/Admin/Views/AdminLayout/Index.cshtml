@@ -23,14 +23,11 @@
 
         </div>
 
-        <footer class="main-footer dark-bg">
-            <div class="pull-right hidden-xs"> Version 1.0</div>
-            Copyright &copy; 2017 Yourdomian. All rights reserved.
-        </footer>
+        @await Component.InvokeAsync("_AdminLayoutFooterComponentPartial")
+
     </div>
 
-    <script src="~/MainDownload-OvioAdmin-html5-template/html/dist/js/jquery.min.js"></script>
-    <script src="~/MainDownload-OvioAdmin-html5-template/html/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/MainDownload-OvioAdmin-html5-template/html/dist/js/ovio.js"></script>
+    @await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+    
 </body>
 </html>

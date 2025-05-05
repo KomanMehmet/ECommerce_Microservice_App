@@ -1,5 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 
+//Yeni Eklenenler
+builder.Services.AddHttpClient();
+//Yeni Eklenenler
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
