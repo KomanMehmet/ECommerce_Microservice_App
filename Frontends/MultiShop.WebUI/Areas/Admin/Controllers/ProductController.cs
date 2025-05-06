@@ -93,7 +93,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Product", new { area = "Admin" });
+                return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });
             }
             return View();
         }
@@ -107,7 +107,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Product", new { area = "Admin" });
+                return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });
             }
 
             return View();
@@ -166,7 +166,31 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Product", new { area = "Admin" });
+                return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });
+            }
+
+            return View();
+        }
+
+        [Route("ProductListWithCategory")]
+        public async Task<IActionResult> ProductListWithCategory()
+        {
+            ViewBag.v0 = "Ürün İşlemleri";
+            ViewBag.v1 = "Ana Sayfa";
+            ViewBag.v2 = "Ürünler";
+            ViewBag.v3 = "Ürün İşlemleri";
+
+            var client = _httpClientFactory.CreateClient();
+
+            var responseMessage = await client.GetAsync("https://localhost:7227/api/Products/GetProductWithCategory");
+
+            if(responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+
+                var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+
+                return View(values);
             }
 
             return View();
