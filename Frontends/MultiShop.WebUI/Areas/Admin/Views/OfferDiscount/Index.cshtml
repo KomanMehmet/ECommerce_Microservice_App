@@ -23,7 +23,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach (var item in Model)
                             {
                                 count++;
@@ -35,13 +34,19 @@
                                     <td><a href="/Admin/OfferDiscount/UpdateOfferDiscount/@item.OfferDiscountID" class="btn btn-success">Güncelle</a></td>
                                 </tr>
                             }
-
                         </tbody>
                     </table>
-                    <td><a href="/Admin/OfferDiscount/CreateOfferDiscount" class="btn btn-primary">Yeni İndirim Teklifi Girişi</a></td>
+
+                    <td>
+                        <a href="/Admin/OfferDiscount/CreateOfferDiscount"
+                           class="btn btn-primary @(Model.Count >= 2 ? "disabled" : "")"
+                           @(Model.Count >= 2 ? "aria-disabled=\"true\" tabindex=\"-1\"" : "")>
+                            Yeni İndirim Teklifi Girişi
+                        </a>
+                    </td>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
-
