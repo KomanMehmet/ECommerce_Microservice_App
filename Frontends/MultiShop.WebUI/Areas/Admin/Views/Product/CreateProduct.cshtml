@@ -18,19 +18,19 @@
                         <input type="text" class="form-control" asp-for="ProductName" />
                         <br />
                         <label>Ürün Fiyatı</label>
-                        <input type="text" class="form-control" asp-for="ProductPrice" />
+                        <input type="text" class="form-control" asp-for="ProductPrice" id="productPrice" />
                         <br />
                         <label>Ürün Görseli</label>
                         <input type="text" class="form-control" asp-for="ProductImageURL" />
                         <br />
                         <label>Ürün Kategorisi</label>
-                        @* @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.CategoryValues, new { @class = "form-control" }) *@
                         <select class="form-control" asp-for="CategoryID" asp-items="@(ViewBag.CategoryValues as List<SelectListItem>)">
                             <option value="">Kategori Seçiniz</option>
                         </select>
                         <br />
                         <label>Ürün Açıklaması</label>
                         <textarea class="form-control" asp-for="ProductDescription" rows="5"></textarea>
+                        <br />
                         <br />
                         <button class="btn btn-primary">Ürün Ekle</button>
                     </form>

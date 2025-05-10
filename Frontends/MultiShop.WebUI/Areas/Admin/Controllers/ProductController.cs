@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using MultiShop.DtoLayer.CatalogDtos.ProductDtos;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
