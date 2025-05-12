@@ -45,7 +45,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("CreateAbout")]
-        public async Task<IActionResult> CreateAbout()
+        public IActionResult CreateAbout()
         {
             ViewBag.v0 = "Hakkımızda İşlemleri";
             ViewBag.v1 = "Ana Sayfa";
