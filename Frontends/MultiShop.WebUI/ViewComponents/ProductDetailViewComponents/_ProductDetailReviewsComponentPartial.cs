@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CommentDtos;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 
 namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
@@ -16,7 +15,6 @@ namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string id)
         {
-
             var client = _httpClientFactory.CreateClient();
 
             var responseMessage = await client.GetAsync("https://localhost:7125/api/Comments/CommentListByProductID?id=" + id);

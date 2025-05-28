@@ -29,55 +29,6 @@
                 </div>
             }
         </div>
-        <div class="col-md-6">
-            <h4 class="mb-4">Leave a review</h4>
-            <small>Your email address will not be published. Required fields are marked *</small>
-            <div class="d-flex my-3">
-                <p class="mb-0 mr-2">Your Rating * :</p>
-                <div class="text-primary" id="starRating">
-                    @for (int i = 1; i <= 5; i++)
-                    {
-                        <i class="far fa-star star" data-value="@i" style="cursor:pointer;"></i>
-                    }
-                </div>
-                <input type="hidden" name="Rating" id="ratingValue" value="0" />
-            </div>
-            <form method="post" asp-action="AddComment">
-                <div class="form-group">
-                    <label for="message">Your Review *</label>
-                    <textarea id="message" name="CommentDetail" cols="30" rows="5" class="form-control" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="name">Your Name *</label>
-                    <input type="text" class="form-control" id="name" name="NameSurname" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email *</label>
-                    <input type="email" class="form-control" id="email" name="Email" required>
-                </div>
-                <div class="form-group mb-0">
-                    <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                </div>
-            </form>
-        </div>
+        @await Html.PartialAsync("~/Views/ProductList/AddComment.cshtml", new { id = ViewBag.x })
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const stars = document.querySelectorAll('.star');
-        const ratingInput = document.getElementById('ratingValue');
-
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                const value = parseInt(star.getAttribute('data-value'));
-                ratingInput.value = value;
-
-                stars.forEach((s, index) => {
-                    s.classList.remove('fas', 'far');
-                    s.classList.add(index < value ? 'fas' : 'far');
-                });
-            });
-        });
-    });
-</script>
