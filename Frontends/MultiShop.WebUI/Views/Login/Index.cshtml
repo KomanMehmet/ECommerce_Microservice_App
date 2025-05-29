@@ -1,4 +1,4 @@
-﻿@model CreateRegisterDto
+﻿@model CreateLoginDto
 
 @{
 	Layout = null;
@@ -25,21 +25,21 @@
 			<div class="form-left">
 				<h2>MultiShop E-Ticaret</h2>
 				<p class="text-1">MultiShop projemiz üzerinden e-ticaret işlemlerini gerçekleştirebilmek, indirimli ürünler ve fırsatlardan haberdar olmak adına hemen oturum açma işlemini gerçekleştirin.</p>
-				<p class="text-2">Alışverişlerinizi gerçekleştirmebilmek, sepetinize ürün eklemek ve ürün listesini görebilmek için oturum açmanız gerekmektedir. Bir hesabınız yoksa aşağıdan kayıt olabilirsiniz.</p>
+				<p class="text-2">Alışverişlerinizi gerçekleştirebilmek, sepetinize ürün eklemek ve ürün listesini görebilmek için oturum açmanız gerekmektedir. Bir hesabınız yoksa aşağıdan kayıt olabilirsiniz.</p>
 				<div class="form-left-last">
-					<a href="/Register/Index" class="account">Kayıt Ol</a>
+					<a href="/Register/Index" class="account">Giriş Yap</a>
 				</div>
 			</div>
 			<form class="form-detail" method="post">
 				<h2>GİRİŞ FORMU</h2>
 				<div class="form-row">
 					<label for="your_username">Kullanıcı Adınız</label>
-					<input type="text" id="your_username" class="input-text">
+					<input type="text" id="your_username" asp-for="Username" class="input-text">
 				</div>
 				<div class="form-group">
 					<div class="form-row form-row-1 ">
 						<label for="password">Şifreniz</label>
-						<input type="password" id="password" class="input-text" required>
+						<input type="password" id="password" asp-for="Password" class="input-text" required>
 					</div>
 				</div>
 				<div class="form-row-last">
