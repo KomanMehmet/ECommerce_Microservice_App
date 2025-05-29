@@ -4,18 +4,18 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text.Json.Nodes;
 
-namespace MultiShop.WebUI.ViewComponents.UILayoutViewComponents
+namespace MultiShop.WebUI.Controllers
 {
-    public class _NavbarUILayoutComponentPartial : ViewComponent
+    public class TestController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _NavbarUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+        public TestController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IActionResult> Index()
         {
             string token = "";
 
@@ -61,6 +61,11 @@ namespace MultiShop.WebUI.ViewComponents.UILayoutViewComponents
                 return View(values);
             }
 
+            return View();
+        }
+
+        public IActionResult Deneme()
+        {
             return View();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace MultiShop.DtoLayer.LoginDtos
+﻿namespace MultiShop.DtoLayer.IdentityDtos.LoginDtos
 {
     public class CreateLoginDto
     {
