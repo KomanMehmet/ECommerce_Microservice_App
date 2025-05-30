@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Yeni Eeklenenler
 //JWT ile ilgili
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+builder.Services.AddAuthentication().AddJwtBearer("OcelotAuthenticationScheme", opt =>
 {
     opt.Authority = builder.Configuration["IdentityServerURL"];
     opt.Audience = "ResourceOcelot";

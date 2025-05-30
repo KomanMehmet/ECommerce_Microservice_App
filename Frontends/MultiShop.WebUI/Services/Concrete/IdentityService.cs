@@ -15,19 +15,21 @@ namespace MultiShop.WebUI.Services.Concrete
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccosser;
         private readonly ClientSettings _clientSettings;
+        private readonly ServiceApiSettings _serviceApiSettings;
 
-        public IdentityService(HttpClient httpClient, IHttpContextAccessor httpContextAccosser, IOptions<ClientSettings> clientSettings)
+        public IdentityService(HttpClient httpClient, IHttpContextAccessor httpContextAccosser, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
         {
             _httpClient = httpClient;
             _httpContextAccosser = httpContextAccosser;
             _clientSettings = clientSettings.Value;
+            _serviceApiSettings = serviceApiSettings.Value;
         }
 
         public async Task<bool> SignIn(SignInDto signUpDto)
         {
             var discoveryEndPoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
-                Address = _clientSettings.IdentityServerUrl,
+                Address = _serviceApiSettings.IdentitServeryUrl,
                 Policy = new DiscoveryPolicy
                 {
                     RequireHttps = false

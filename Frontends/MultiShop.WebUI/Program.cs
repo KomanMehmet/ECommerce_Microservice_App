@@ -47,6 +47,9 @@ builder.Services.AddControllersWithViews();
 //Login iþlemi için
 builder.Services.Configure<ClientSettings>(
     builder.Configuration.GetSection("ClientSettings"));
+//Api Settings için
+builder.Services.Configure<ServiceApiSettings>(
+    builder.Configuration.GetSection("ServiceApiSettings"));
 
 var app = builder.Build();
 
