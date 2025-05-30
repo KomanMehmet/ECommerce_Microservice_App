@@ -5,3 +5,6 @@ Discount - 7228
 Order - 7229
 Cargo - 7230
 Basket - 7231
+Comment - 7232
+Payment - 7233
+Images - 7234
