@@ -22,6 +22,8 @@ namespace MultiShop.IdentityServer
 
             new ApiResource("ResourceBasket"){ Scopes = {"BasketFullPermission"} },
 
+            new ApiResource("ResourceOcelot"){ Scopes = {"OcelotFullPermission"} },
+
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -40,6 +42,7 @@ namespace MultiShop.IdentityServer
             new ApiScope("OrderFullPermission", "Full Authority For Order Operations"),
             new ApiScope("CargoFullPermission", "Full Authority For Cargo Operations"),
             new ApiScope("BasketFullPermission", "Full Authority For Basket Operations"),
+            new ApiScope("OcelotFullPermission", "Full Authority For Ocelot Operations"),
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -52,7 +55,7 @@ namespace MultiShop.IdentityServer
                 ClientName = "Multi Shop Visitor User",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = { new Secret("multishopsecret".Sha256()) },
-                AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission" }
+                AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "OcelotFullPermission" }
             },
 
             //Manager Client
@@ -62,7 +65,7 @@ namespace MultiShop.IdentityServer
                 ClientName = "Multi Shop Manager User",
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 ClientSecrets = {new Secret("multishopsecret".Sha256()) },
-                AllowedScopes = { "CatalogFullPermission", "CatalogReadPermission", "BasketFullPermission" }
+                AllowedScopes = { "CatalogFullPermission", "CatalogReadPermission", "BasketFullPermission", "OcelotFullPermission" }
             },
 
             //Admin Client
@@ -76,6 +79,7 @@ namespace MultiShop.IdentityServer
                     "OrderFullPermission", 
                     "CargoFullPermission",
                     "BasketFullPermission",
+                    "OcelotFullPermission",
                 IdentityServerConstants.LocalApi.ScopeName,
                 IdentityServerConstants.StandardScopes.Email,
                 IdentityServerConstants.StandardScopes.OpenId,
