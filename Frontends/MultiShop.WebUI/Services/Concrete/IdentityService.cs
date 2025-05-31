@@ -1,4 +1,5 @@
 ﻿using Duende.IdentityModel.Client;
+using Duende.IdentityServer.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
@@ -23,6 +24,60 @@ namespace MultiShop.WebUI.Services.Concrete
             _httpContextAccosser = httpContextAccosser;
             _clientSettings = clientSettings.Value;
             _serviceApiSettings = serviceApiSettings.Value;
+        }
+
+        public async Task<bool> GetRefreshToken()
+        {
+            var discoveryEndPoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+            {
+                Address = _serviceApiSettings.IdentitServeryUrl,
+                Policy = new DiscoveryPolicy
+                {
+                    RequireHttps = false
+                }
+            });
+
+            var refreshToken = await _httpContextAccosser.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+
+            RefreshTokenRequest refreshTokenRequest = new()
+            {
+                ClientId = _clientSettings.MultiShopManagerClient.ClientId,
+                ClientSecret = _clientSettings.MultiShopManagerClient.ClientSecret,
+                RefreshToken = refreshToken,
+                Address = discoveryEndPoint.TokenEndpoint,
+            };
+
+            var token = await _httpClient.RequestRefreshTokenAsync(refreshTokenRequest);
+
+            var authenticationToken = new List<AuthenticationToken>
+            {
+                 new AuthenticationToken
+                {
+                    Name = OpenIdConnectParameterNames.AccessToken,
+                    Value = token.AccessToken
+                },
+                new AuthenticationToken
+                {
+                    Name = OpenIdConnectParameterNames.RefreshToken,
+                    Value = token.RefreshToken
+                },
+                new AuthenticationToken
+                {
+                    Name = OpenIdConnectParameterNames.ExpiresIn,
+                    Value = DateTime.Now.AddSeconds(token.ExpiresIn).ToString()
+                }
+            };
+
+            var authenticationResult = await _httpContextAccosser.HttpContext.AuthenticateAsync();
+
+            var properties = authenticationResult.Properties;
+
+            properties.StoreTokens(authenticationToken);
+
+            await _httpContextAccosser.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
+                authenticationResult.Principal, properties);
+
+            return true;
         }
 
         public async Task<bool> SignIn(SignInDto signUpDto)

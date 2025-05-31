@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MultiShop.WebUI.Services;
+using MultiShop.WebUI.Handlers;
 using MultiShop.WebUI.Services.Concrete;
 using MultiShop.WebUI.Services.Interfaces;
 using MultiShop.WebUI.Settings;
@@ -45,11 +45,20 @@ builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
 //Login iþlemi için
-builder.Services.Configure<ClientSettings>(
-    builder.Configuration.GetSection("ClientSettings"));
+builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 //Api Settings için
-builder.Services.Configure<ServiceApiSettings>(
-    builder.Configuration.GetSection("ServiceApiSettings"));
+builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
+
+//apigateway için
+builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+
+var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+
+builder.Services.AddHttpClient<IUserService, UserService>(opt =>
+{
+    opt.BaseAddress = new Uri(values.IdentitServeryUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+//Api gateway için
 
 var app = builder.Build();
 
