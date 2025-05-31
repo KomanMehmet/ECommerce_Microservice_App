@@ -4,11 +4,11 @@ using System.Net.Http.Headers;
 
 namespace MultiShop.WebUI.Handlers
 {
-    public class ClintCredentialTokenHandler : DelegatingHandler
+    public class ClientCredentialTokenHandler : DelegatingHandler
     {
         private readonly IClientCredentialTokenService _clientCredentialTokenService;
 
-        public ClintCredentialTokenHandler(IClientCredentialTokenService clientCredentialTokenService)
+        public ClientCredentialTokenHandler(IClientCredentialTokenService clientCredentialTokenService)
         {
             _clientCredentialTokenService = clientCredentialTokenService;
         }
