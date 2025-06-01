@@ -1,17 +1,9 @@
 ﻿using MultiShop.DtoLayer.CatalogDtos.SpecialOfferDtos;
+using MultiShop.WebUI.Services.CatalogServices.GenericServices;
 
 namespace MultiShop.WebUI.Services.CatalogServices.SpacialOfferServices
 {
-    public interface ISpecialOfferService
+    public interface ISpecialOfferService : ICatalogCrudService<ResultSpecialOfferDto, CreateSpecialOfferDto, UpdateSpecialOfferDto>
     {
-        Task<List<ResultSpecialOfferDto>> GetAllSpecialOfferAsync();
-
-        Task CreateSpecialOfferAsync(CreateSpecialOfferDto createSpecialOfferDto);
-
-        Task UpdateSpecialOfferAsync(UpdateSpecialOfferDto updateSpecialOfferDto);
-
-        Task DeleteSpecialOfferAsync(string id);
-
-        Task<UpdateSpecialOfferDto> GetByIdSpecialOfferAsync(string id);
     }
 }

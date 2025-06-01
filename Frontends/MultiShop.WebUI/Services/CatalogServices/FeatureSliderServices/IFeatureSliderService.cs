@@ -1,19 +1,10 @@
 ﻿using MultiShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
+using MultiShop.WebUI.Services.CatalogServices.GenericServices;
 
 namespace MultiShop.WebUI.Services.CatalogServices.FeatureSliderServices
 {
-    public interface IFeatureSliderService
+    public interface IFeatureSliderService : ICatalogCrudService<ResultFeatureSliderDto, CreateFeatureSliderDto, UpdateFeatureSliderDto>
     {
-        Task<List<ResultFeatureSliderDto>> GetAllFeatureSliderAsync();
-
-        Task CreateFeatureSliderAsync(CreateFeatureSliderDto createFeatureSliderDto);
-
-        Task UpdateFeatureSliderAsync(UpdateFeatureSliderDto updateFeatureSliderDto);
-
-        Task DeleteFeatureSliderAsync(string id);
-
-        Task<UpdateFeatureSliderDto> GetByIdFeatureSliderAsync(string id);
-
         Task FeatureSliderChangeStatusToTrue(string id);
 
         Task FeatureSliderChangeStatusToFalse(string id);

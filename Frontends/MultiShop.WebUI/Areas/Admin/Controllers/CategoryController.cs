@@ -24,7 +24,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Kategoriler";
             ViewBag.v3 = "Kategori Listesi";
 
-            var values = await _categoryService.GetAllCategoryAsync();
+            var values = await _categoryService.GetAllAsync();
 
             return View(values);
         }
@@ -45,7 +45,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("CreateCategory")]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            await _categoryService.CreateCategoryAsync(createCategoryDto);
+            await _categoryService.CreateAsync(createCategoryDto);
 
             TempData["CreateSuccess"] = "Kategori başarıyla eklendi.";
 
@@ -55,7 +55,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("DeleteCategory/{id}")]
         public async Task<IActionResult> DeleteCategory(string id)
         {
-            await _categoryService.DeleteCategoryAsync(id);
+            await _categoryService.DeleteAsync(id);
 
             TempData["DeleteSuccess"] = "Kategori başarıyla silindi.";
 
@@ -71,7 +71,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Kategoriler";
             ViewBag.v3 = "Kategori Güncelleme İşlemi";
 
-            var values = await _categoryService.GetByIdCategoryAsync(id);
+            var values = await _categoryService.GetByIdAsync(id);
 
             return View(values);
         }
@@ -80,7 +80,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
-            await _categoryService.UpdateCategoryAsync(updateCategoryDto);
+            await _categoryService.UpdateAsync(updateCategoryDto);
 
             TempData["UpdateSuccess"] = "Kategori başarıyla güncellendi.";
 

@@ -27,7 +27,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Öne Çıkanlar";
             ViewBag.v3 = "Öne Çıkan Listesi";
 
-            var values = await _featureSliderService.GetAllFeatureSliderAsync();
+            var values = await _featureSliderService.GetAllAsync();
 
             return View(values);
         }
@@ -48,7 +48,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("CreateFeatureSlider")]
         public async Task<IActionResult> CreateFeatureSlider(CreateFeatureSliderDto createFeatureSliderDto)
         {
-            await _featureSliderService.CreateFeatureSliderAsync(createFeatureSliderDto);
+            await _featureSliderService.CreateAsync(createFeatureSliderDto);
 
             return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
         }
@@ -56,7 +56,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("DeleteFeatureSlider/{id}")]
         public async Task<IActionResult> DeleteFeatureSlider(string id)
         {
-            await _featureSliderService.DeleteFeatureSliderAsync(id);
+            await _featureSliderService.DeleteAsync(id);
 
             return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
         }
@@ -70,7 +70,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Öne Çıkanlar";
             ViewBag.v3 = "Öne Çıkan Güncelleme İşlemi";
 
-            var value = await _featureSliderService.GetByIdFeatureSliderAsync(id);
+            var value = await _featureSliderService.GetByIdAsync(id);
 
             return View(value);
         }
@@ -79,7 +79,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateFeatureSlider(UpdateFeatureSliderDto updateFeatureSliderDto)
         {
-            await _featureSliderService.UpdateFeatureSliderAsync(updateFeatureSliderDto);
+            await _featureSliderService.UpdateAsync(updateFeatureSliderDto);
 
             return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
         }

@@ -24,7 +24,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Özel İndirimler";
             ViewBag.v3 = "Özel İndirim Listesi";
 
-            var values = await _specialOfferService.GetAllSpecialOfferAsync();
+            var values = await _specialOfferService.GetAllAsync();
 
             return View(values);
         }
@@ -45,7 +45,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("CreateSpecialOffer")]
         public async Task<IActionResult> CreateSpecialOffer(CreateSpecialOfferDto createSpecialOfferDto)
         {
-            await _specialOfferService.CreateSpecialOfferAsync(createSpecialOfferDto);
+            await _specialOfferService.CreateAsync(createSpecialOfferDto);
 
             return RedirectToAction("Index", "SpecialOffer", new { area = "Admin" });
         }
@@ -53,7 +53,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("DeleteSpecialOffer/{id}")]
         public async Task<IActionResult> DeleteSpecialOffer(string id)
         {
-            await _specialOfferService.DeleteSpecialOfferAsync(id);
+            await _specialOfferService.DeleteAsync(id);
 
             return RedirectToAction("Index", "SpecialOffer", new { area = "Admin" });
         }
@@ -67,7 +67,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Özel İndirimler";
             ViewBag.v3 = "Özel İndirim Güncelleme İşlemi";
 
-            var value = await _specialOfferService.GetByIdSpecialOfferAsync(id);
+            var value = await _specialOfferService.GetByIdAsync(id);
 
             return View(value);
         }
@@ -76,7 +76,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("UpdateSpecialOffer/{id}")]
         public async Task<IActionResult> UpdateSpecialOffer(UpdateSpecialOfferDto updateSpecialOfferDto)
         {
-            await _specialOfferService.UpdateSpecialOfferAsync(updateSpecialOfferDto);
+            await _specialOfferService.UpdateAsync(updateSpecialOfferDto);
 
             return RedirectToAction("Index", "SpecialOffer", new { area = "Admin" });
         }

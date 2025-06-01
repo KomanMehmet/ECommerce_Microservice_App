@@ -1,17 +1,9 @@
 ﻿using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
+using MultiShop.WebUI.Services.CatalogServices.GenericServices;
 
 namespace MultiShop.WebUI.Services.CatalogServices.CategoryServices
 {
-    public interface ICategoryService
+    public interface ICategoryService : ICatalogCrudService<ResultCategoryDto, CreateCategoryDto, UpdateCategoryDto>
     {
-        Task<List<ResultCategoryDto>> GetAllCategoryAsync();
-
-        Task CreateCategoryAsync(CreateCategoryDto createCategoryDto);
-
-        Task UpdateCategoryAsync(UpdateCategoryDto updateCategoryDto);
-
-        Task DeleteCategoryAsync(string id);
-
-        Task<UpdateCategoryDto> GetByIdCategoryAsync(string id);
     }
 }
