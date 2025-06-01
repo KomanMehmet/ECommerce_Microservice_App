@@ -1,9 +1,19 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MultiShop.Comment.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 //Yeni eklenenler
+//JWT ile ilgili
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.Authority = builder.Configuration["IdentityServerURL"];//appsettingsjson'a da eklemeyi unutma.
+    opt.Audience = "ResourceComment";//identityserver'ýn configdeki ismi.
+    opt.RequireHttpsMetadata = false;
+});
+//JWT ile ilgili
+
 builder.Services.AddDbContext<CommentContext>();
 //Yeni Eklenenler
 
@@ -22,6 +32,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//Yeni eklenen
+app.UseAuthentication();
 
 app.UseAuthorization();
 
