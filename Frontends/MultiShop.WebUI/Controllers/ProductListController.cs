@@ -17,6 +17,9 @@ namespace MultiShop.WebUI.Controllers
         public IActionResult Index(string id)
         {
             ViewBag.i = id;
+            @ViewBag.directory1 = "Ana Sayfa";
+            @ViewBag.directory2 = "Ürünler";
+            @ViewBag.directory3 = "Ürün Listesi";
 
             return View();
         }
@@ -24,6 +27,9 @@ namespace MultiShop.WebUI.Controllers
         public IActionResult ProductDetail(string id)
         {
             ViewBag.x = id;
+            @ViewBag.directory1 = "Ana Sayfa";
+            @ViewBag.directory2 = "Ürün Listesi";
+            @ViewBag.directory3 = "Ürün Detayları";
 
             return View();
         }
