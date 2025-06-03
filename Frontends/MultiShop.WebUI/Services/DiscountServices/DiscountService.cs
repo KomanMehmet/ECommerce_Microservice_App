@@ -1,4 +1,5 @@
 ﻿using MultiShop.DtoLayer.DiscountDtos;
+using System.Threading.Tasks;
 
 namespace MultiShop.WebUI.Services.DiscountServices
 {
@@ -11,26 +12,6 @@ namespace MultiShop.WebUI.Services.DiscountServices
             _httpClient = httpClient;
         }
 
-        public Task CreateDiscountCouponAsync(CreateDiscountCouponDto createCouponDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteDiscountCouponAsync(int couponId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<ResultDiscountCouponDto>> GetAllDiscountCouponAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<GetByIdDiscountCouponDto> GetByIdDiscountCouponAsync(int couponId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<GetDiscountCodeDetailByCode> GetDiscountCodeAsync(string couponCode)
         {
             var response = await _httpClient.GetAsync("http://localhost:7228/api/Discounts/GetCodeDetailByCode?code=" + couponCode);
@@ -40,9 +21,13 @@ namespace MultiShop.WebUI.Services.DiscountServices
             return values;
         }
 
-        public Task UpdateDiscountCouponAsync(UpdateDiscountCouponDto updateCouponDto)
+        public async Task<int> GetDiscountRateByCode(string couponCode)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync("http://localhost:7228/api/Discounts/GetDiscountRateByCode?code=" + couponCode);
+
+            var values = await response.Content.ReadFromJsonAsync<int>();
+
+            return values;
         }
     }
 }

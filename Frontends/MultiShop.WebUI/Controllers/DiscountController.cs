@@ -25,9 +25,19 @@ namespace MultiShop.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> ComfirmDiscountCoupon(string code)
         {
-            var values = await _discountService.GetDiscountCodeAsync(code);
+            var discountRate = await _discountService.GetDiscountRateByCode(code);
 
-            return View(values);
+            var basket = await _basketService.GetBasket();
+
+            var tax = basket.TotalPrice * 0.18m;
+
+            var generalTotal = basket.TotalPrice + tax;
+
+            var totalNewPriceWithDiscount = generalTotal - (generalTotal / 100 * discountRate);
+
+            //ViewBag.totalPriceWithDiscount = totalNewPriceWithDiscount;
+
+            return RedirectToAction("Index", "ShoppingCart", new {code = code, discountRate = discountRate, totalPriceWithDiscount = totalNewPriceWithDiscount });
         }
     }
 }

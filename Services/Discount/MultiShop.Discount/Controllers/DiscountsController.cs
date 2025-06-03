@@ -68,5 +68,17 @@ namespace MultiShop.Discount.Controllers
             }
             return Ok(values);
         }
+
+        [HttpGet("GetDiscountRateByCode")]
+        public IActionResult GetDiscountRateByCode(string code)
+        {
+            var values =  _discountService.GetDiscountRateByCode(code);
+
+            if (values == null)
+            {
+                return NotFound("Coupon bulunamadı");
+            }
+            return Ok(values);
+        }
     }
 }
