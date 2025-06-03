@@ -1,8 +1,5 @@
 ﻿@model List<BasketItemDto>
 
-@{
-    decimal totalPrice = 0;
-}
 
 <div class="col-lg-8 table-responsive mb-5">
     <table class="table table-light table-borderless table-hover text-center mb-0">
@@ -19,7 +16,6 @@
             @foreach (var item in Model)
             {
                 var itemTotal = item.Price * item.Quantity;
-                totalPrice += itemTotal;
 
                 <tr>
                     <td class="align-middle">
@@ -52,8 +48,4 @@
             }
         </tbody>
     </table>
-
-    <div class="text-right mt-3">
-        <h5>Genel Toplam: <strong>@totalPrice ₺</strong></h5>
-    </div>
 </div>

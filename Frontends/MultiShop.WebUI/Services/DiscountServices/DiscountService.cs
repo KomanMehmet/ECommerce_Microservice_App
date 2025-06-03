@@ -31,9 +31,9 @@ namespace MultiShop.WebUI.Services.DiscountServices
             throw new NotImplementedException();
         }
 
-        public async Task<GetDiscountCodeDetailByCode> GetDiscountCode(string couponCode)
+        public async Task<GetDiscountCodeDetailByCode> GetDiscountCodeAsync(string couponCode)
         {
-            var response = await _httpClient.GetAsync($"discounts/GetCodeDetailByCode/{couponCode}");
+            var response = await _httpClient.GetAsync("http://localhost:7228/api/Discounts/GetCodeDetailByCode?code=" + couponCode);
 
             var values = await response.Content.ReadFromJsonAsync<GetDiscountCodeDetailByCode>();
 
