@@ -1,6 +1,6 @@
-﻿using MultiShop.Discount.Dtos;
+﻿using MultiShop.DtoLayer.DiscountDtos;
 
-namespace MultiShop.Discount.Services
+namespace MultiShop.WebUI.Services.DiscountServices
 {
     public interface IDiscountService
     {
@@ -14,6 +14,6 @@ namespace MultiShop.Discount.Services
 
         Task<GetByIdDiscountCouponDto> GetByIdDiscountCouponAsync(int couponId);
 
-        Task<GetDiscountCodeDetailByCode> GetDiscountCodeAsync(string couponCode);
+        Task<GetDiscountCodeDetailByCode> GetDiscountCode(string couponCode);
     }
 }

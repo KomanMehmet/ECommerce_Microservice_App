@@ -38,7 +38,7 @@ namespace MultiShop.Basket.Controllers
             return Ok("Successfully saved basket.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveBasket()
         {
             await _basketService.DeleteBasket(_loginService.GetUserId);
