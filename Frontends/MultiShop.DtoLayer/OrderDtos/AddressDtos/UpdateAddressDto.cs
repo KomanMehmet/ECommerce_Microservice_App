@@ -1,6 +1,6 @@
-﻿namespace MultiShop.Order.Application.Features.CQRS.Results.AddressResults
+﻿namespace MultiShop.DtoLayer.OrderDtos.AddressDtos
 {
-    public class GetAddressQueryResult
+    public class UpdateAddressDto
     {
         public int AddressID { get; set; }
 

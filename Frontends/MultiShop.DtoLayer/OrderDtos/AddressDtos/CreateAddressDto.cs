@@ -1,9 +1,7 @@
-﻿namespace MultiShop.Order.Application.Features.CQRS.Results.AddressResults
+﻿namespace MultiShop.DtoLayer.OrderDtos.AddressDtos
 {
-    public class GetAddressQueryResult
+    public class CreateAddressDto
     {
-        public int AddressID { get; set; }
-
         public string UserID { get; set; }
 
         public string Name { get; set; }

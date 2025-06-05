@@ -20,7 +20,14 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
             value.UserID = updateAddressCommand.UserID;
             value.City = updateAddressCommand.City;
             value.District = updateAddressCommand.District;
-            value.Detail = updateAddressCommand.Detail;
+            value.Detail1 = updateAddressCommand.Detail1;
+            value.Detail2 = updateAddressCommand.Detail2;
+            value.Country = updateAddressCommand.Country;
+            value.Email = updateAddressCommand.Email;
+            value.Name = updateAddressCommand.Name;
+            value.Surname = updateAddressCommand.Surname;
+            value.Phone = updateAddressCommand.Phone;
+            value.ZipCode = updateAddressCommand.ZipCode;
 
             await _addressRepository.UpdateAsync(value);
         }

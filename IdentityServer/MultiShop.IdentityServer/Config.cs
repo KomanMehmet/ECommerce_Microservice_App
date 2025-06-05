@@ -78,6 +78,7 @@ namespace MultiShop.IdentityServer
                 AllowedScopes = { "CatalogFullPermission", "CatalogReadPermission", "BasketFullPermission", 
                     "OcelotFullPermission", "CommentFullPermission", "PaymentFullPermission", "ImagesFullPermission",
                     "DiscountFullPermission",
+                    "OrderFullPermission",
                 IdentityServerConstants.LocalApi.ScopeName,
                 IdentityServerConstants.StandardScopes.Email,
                 IdentityServerConstants.StandardScopes.OpenId,

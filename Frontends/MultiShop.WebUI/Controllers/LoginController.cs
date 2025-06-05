@@ -33,7 +33,8 @@ namespace MultiShop.WebUI.Controllers
         public async Task<IActionResult> Index(SignInDto singInDto)
         {
             await _identityService.SignIn(singInDto);
-            return View();
+            
+            return RedirectToAction("Index", "Default");
         }
     }
 }
