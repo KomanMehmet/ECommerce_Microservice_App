@@ -1,0 +1,363 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .step-bar {
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            text-align: center;
+            flex: 1;
+            color: #aaa;
+        }
+
+            .step::before {
+                counter-increment: step;
+                content: counter(step);
+                width: 30px;
+                height: 30px;
+                border: 2px solid #ccc;
+                display: inline-block;
+                border-radius: 50%;
+                background-color: white;
+                line-height: 28px;
+                color: #555;
+                margin-bottom: 5px;
+            }
+
+            .step.active::before {
+                border-color: #4e54c8;
+                background-color: #4e54c8;
+                color: white;
+            }
+
+            .step::after {
+                content: '';
+                position: absolute;
+                top: 14px;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                background-color: #ccc;
+                z-index: -1;
+            }
+
+            .step:first-child::after {
+                display: none;
+            }
+
+        .credit-card {
+            width: 400px;
+            height: 250px;
+            border-radius: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #3d2c8d, #9c27b0, #ff4081);
+            background-size: 300% 300%;
+            animation: gradientBG 10s ease infinite;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        @@keyframes gradientBG {
+            0%
+
+        {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chip {
+            width: 50px;
+            height: 35px;
+            background: linear-gradient(45deg, #d9d9d9, #a6a6a6);
+            border-radius: 6px;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card-middle {
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin: 20px 0;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #ddd;
+        }
+
+        .form-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            min-width: 320px;
+        }
+
+            .form-container h2 {
+                margin-top: 0;
+                color: #333;
+                font-size: 24px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group.half {
+            flex: 1;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select {
+            padding: 12px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            transition: border-color 0.2s ease;
+        }
+
+            input:focus, select:focus {
+                border-color: #4e54c8;
+                outline: none;
+            }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 160px;
+                background-color: #4e54c8;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 6px;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -80px;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 14px;
+            background-color: #4e54c8;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #3c40a4;
+            }
+
+        @@media screen and (max-width: 768px) {
+            .container
+
+        {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .credit-card {
+            width: 100%;
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="step-bar">
+        <div class="step active">Kart Bilgisi</div>
+        <div class="step">Onay</div>
+        <div class="step">Tamamlandı</div>
+    </div>
+
+    <div class="container">
+        <div class="credit-card" id="cardDisplay">
+            <div class="card-top">
+                <span class="chip"></span>
+                <span class="brand">💳 VISA</span>
+            </div>
+            <div class="card-middle">
+                <div class="card-number" id="cardNumberDisplay">#### #### #### ####</div>
+            </div>
+            <div class="card-bottom">
+                <div>
+                    <div class="label">Kart Sahibi</div>
+                    <div class="card-name" id="cardNameDisplay">AD SOYAD</div>
+                </div>
+                <div>
+                    <div class="label">SKT</div>
+                    <div class="card-expiry" id="cardExpiryDisplay">MM/YY</div>
+                </div>
+                <div>
+                    <div class="label">CVV</div>
+                    <div class="card-cvv" id="cardCvvDisplay">***</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>Ödeme Bilgileri</h2>
+            <p>Lütfen kart bilgilerinizi eksiksiz giriniz.</p>
+
+            <form method="post">
+                <div class="form-group">
+                    <label for="cardNumber">Kart Numarası</label>
+                    <input type="text" id="cardNumber" maxlength="19" placeholder="#### #### #### ####" oninput="updateCardNumber(this)">
+                </div>
+                <div class="form-group">
+                    <label for="cardName">Ad Soyad</label>
+                    <input type="text" id="cardName" placeholder="Kart üzerindeki isim" oninput="updateCardName(this)">
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="expiryMonth">Ay</label>
+                        <select id="expiryMonth" onchange="updateExpiryDropdown()">
+                            <option value="">MM</option>
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i.ToString("D2")">@i.ToString("D2")</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group half">
+                        <label for="expiryYear">Yıl</label>
+                        <select id="expiryYear" onchange="updateExpiryDropdown()">
+                            <option value="">YY</option>
+                            @for (int i = DateTime.Now.Year; i <= DateTime.Now.Year + 10; i++)
+                            {
+                                <option value="@i.ToString().Substring(2)">@(i.ToString())</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group half">
+                    <label for="cvv">
+                        CVV
+                        <span class="tooltip">
+                            ❓
+                            <span class="tooltiptext">Kartın arkasındaki 3 haneli numara</span>
+                        </span>
+                    </label>
+                    <input type="text" id="cvv" maxlength="4" placeholder="***" oninput="updateCvv(this)">
+                </div>
+                <button type="submit">💰 Ödemeyi Tamamla</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function updateCardNumber(input) {
+            let value = input.value.replace(/\D/g, '').substring(0, 16);
+            value = value.replace(/(.{4})/g, '$1 ').trim();
+            input.value = value;
+            document.getElementById("cardNumberDisplay").innerText = value.padEnd(19, '#');
+        }
+
+        function updateCardName(input) {
+            const name = input.value.toUpperCase().substring(0, 24);
+            document.getElementById("cardNameDisplay").innerText = name || 'AD SOYAD';
+        }
+
+        function updateExpiryDropdown() {
+            const month = document.getElementById("expiryMonth").value;
+            const year = document.getElementById("expiryYear").value;
+            const display = (month && year) ? `${month}/${year}` : 'MM/YY';
+            document.getElementById("cardExpiryDisplay").innerText = display;
+        }
+
+        function updateCvv(input) {
+            let value = input.value.replace(/\D/g, '').substring(0, 4);
+            input.value = value;
+            document.getElementById("cardCvvDisplay").innerText = value.replace(/./g, '*') || '***';
+        }
+    </script>
+
+</body>
+</html>

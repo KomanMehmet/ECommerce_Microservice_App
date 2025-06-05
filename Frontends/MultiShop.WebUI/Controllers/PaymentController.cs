@@ -2,13 +2,13 @@
 
 namespace MultiShop.WebUI.Controllers
 {
-    public class DefaultController : Controller
+    public class PaymentController : Controller
     {
         public IActionResult Index()
         {
             ViewBag.directory1 = "Ana Sayfa";
-            ViewBag.directory2 = "Ürünler";
-            ViewBag.directory3 = "Ürün Listesi";
+            ViewBag.directory2 = "Ödeme";
+            ViewBag.directory3 = "Kartla Ödeme";
 
             return View();
         }
