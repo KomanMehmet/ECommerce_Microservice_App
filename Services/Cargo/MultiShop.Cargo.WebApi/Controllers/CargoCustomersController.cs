@@ -69,5 +69,20 @@ namespace MultiShop.Cargo.WebApi.Controllers
 
             return Ok("Cargo customer removed successfully.");
         }
+
+        [HttpGet("GetCargoCustomerByUserId/{userId}")]
+        public IActionResult GetCargoCustomerByUserId(string userId)
+        {
+            var value = _cargoCustomerService.TGetCargoCustumerById(userId);
+
+            if (value == null)
+            {
+                return NotFound("Cargo customer not found.");
+            }
+
+            var result = _mapper.Map<GetByIdCargoCustomerDto>(value);
+
+            return Ok(result);
+        }
     }
 }

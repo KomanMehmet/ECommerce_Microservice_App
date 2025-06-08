@@ -1,9 +1,7 @@
-﻿namespace MultiShop.Cargo.DtoLayer.Dtos.CargoCustomerDtos
+﻿namespace MultiShop.DtoLayer.CargoDtos.CargoCustomerDtos
 {
-    public class ResultCargoCustomerDto
+    public class CreateCargoCustomerDto
     {
-        public int CargoCustomerID { get; set; }
-
         public string Name { get; set; }
 
         public string Surname { get; set; }

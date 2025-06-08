@@ -1,0 +1,85 @@
+﻿@model List<ResultCargoCompanyDto>
+
+@{
+    ViewData["Title"] = "CargoList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<style>
+    table th, table td {
+        text-align: center !important;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1f3f5;
+        transition: background-color 0.3s ease;
+    }
+
+    .card-header {
+        padding: 1rem 1.5rem;
+        border-bottom: none;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+</style>
+
+
+<section class="content container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg rounded-4">
+                <div class="card-header text-center text-white" style="background: linear-gradient(45deg, #6a11cb, #2575fc);">
+                    <h3 class="mb-0"><i class="fa fa-users me-2"></i> Kargo Listesi</h3>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-bordered table-hover mb-0" style="text-align: center;">
+                        <thead style="background: linear-gradient(90deg, #f7971e, #ffd200); color: #333;">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Kargo Şirketi</th>
+                                <th scope="col">Sil</th>
+                                <th scope="col">Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody style="vertical-align: middle;">
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th>@count</th>
+                                        <td>@item.CargoCompanyName</td>
+                                        <td>
+                                            <a href="/Admin/Cargo/DeleteCargoCompany/@item.CargoCompanyID" class="btn btn-danger">Sil</a>
+                                        </td>
+                                        <td>
+                                            <a href="/Admin/Cargo/UpdateCargoCompany/@item.CargoCompanyID" class="btn btn-info">Güncelle</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">Hiç kargo firması bulunamadı.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <a href="/Admin/Cargo/CreateCargoCompany" class="btn btn-primary">Yeni Kargo Firması Girişi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

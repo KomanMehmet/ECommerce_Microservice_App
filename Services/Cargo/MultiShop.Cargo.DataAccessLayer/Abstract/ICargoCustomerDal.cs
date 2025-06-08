@@ -4,5 +4,6 @@ namespace MultiShop.Cargo.DataAccessLayer.Abstract
 {
     public interface ICargoCustomerDal : IGenericDal<CargoCustomer>
     {
+        CargoCustomer GetCargoCustumerById(string id);
     }
 }

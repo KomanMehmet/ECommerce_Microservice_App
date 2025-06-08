@@ -1,0 +1,52 @@
+﻿@model CreateCargoCompanyDto
+
+
+@{
+    ViewData["Title"] = "CreateCargoCompany";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        background: #fff;
+    }
+
+    .form-header {
+        background: linear-gradient(45deg, #00c6ff, #0072ff);
+        padding: 15px;
+        border-radius: 15px 15px 0 0;
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+
+    }
+
+    .text-end {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="form-container shadow-lg">
+    <div class="form-header">
+        <h3><i class="fa fa-plus me-2"></i>Yeni Kargo Firması Ekle</h3>
+    </div>
+
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="CargoCompanyName" class="form-label">Kargo Şirketi Adı</label>
+            <input asp-for="CargoCompanyName" class="form-control" placeholder="Örn: Aras Kargo" />
+            <span asp-validation-for="CargoCompanyName" class="text-danger"></span>
+        </div>
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-success">Kaydet</button>
+            <a href="/Admin/Cargo/CargoCompanyList" class="btn btn-warning">İptal</a>
+        </div>
+    </form>
+</div>
+

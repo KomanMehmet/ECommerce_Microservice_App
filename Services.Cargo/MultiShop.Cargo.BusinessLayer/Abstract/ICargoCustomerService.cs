@@ -4,6 +4,6 @@ namespace MultiShop.Cargo.BusinessLayer.Abstract
 {
     public interface ICargoCustomerService : IGenericService<CargoCustomer>
     {
-
+        CargoCustomer TGetCargoCustumerById(string id);
     }
 }
