@@ -1,0 +1,133 @@
+﻿@model List<ResultSendBoxMessageDto>
+
+@{
+    ViewData["Title"] = "SendBox";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";
+    int count = 0;
+    var colorCount = 5;
+}
+
+<style>
+    .row-color-1 {
+        background-color: #f8f9fa;
+    }
+    /* açık gri */
+    .row-color-2 {
+        background-color: #e0f7fa;
+    }
+    /* açık mavi */
+    .row-color-3 {
+        background-color: #f1f8e9;
+    }
+    /* açık yeşil */
+    .row-color-4 {
+        background-color: #fff3e0;
+    }
+    /* açık turuncu */
+    .row-color-5 {
+        background-color: #fce4ec;
+    }
+    /* pastel pembe */
+
+    .table-hover tbody tr:hover {
+        background-color: #ececec !important;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .message-icon {
+        margin-right: 5px;
+        color: #0d6efd;
+    }
+
+    .btn-info {
+        font-size: 0.85rem;
+        padding: 5px 12px;
+    }
+
+    .card-title i {
+        color: #0d6efd;
+        margin-right: 6px;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card shadow-sm rounded-4 border-0">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <i class="fas fa-envelope-open-text"></i> Gelen Mesajlar
+                        </h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Alıcı</th>
+                                        <th>Konu</th>
+                                        <th>Tarih</th>
+                                        <th>Mesaj Özeti</th>
+                                        <th>Durum</th>
+                                        <th>Detay</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var message in Model)
+                                    {
+                                        count++;
+                                        var renkSinifi = $"row-color-{(count % colorCount == 0 ? colorCount : count % colorCount)}";
+                                        <tr class="@renkSinifi">
+                                            <td>@count</td>
+                                            <td>
+                                                <i class="fas fa-user message-icon"></i>
+                                                @message.SenderID
+                                            </td>
+                                            <td>
+                                                <i class="fas fa-tag message-icon"></i>
+                                                @message.Subject
+                                            </td>
+                                            <td>
+                                                <i class="fas fa-clock message-icon"></i>
+                                                @message.MessageDate.ToString("dd-MMM-yyyy HH:mm")
+                                            </td>
+                                            <td>
+                                                @((message.MessageDetail.Length > 60) ? message.MessageDetail.Substring(0, 60) + "..." : message.MessageDetail)
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-@(message.IsRead ? "success" : "warning")">
+                                                    @message.IsRead
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="/Messages/Details/@message.UserMessageID" class="btn btn-info">
+                                                    <i class="fas fa-eye"></i> Detay
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/Messages/Delete/@message.UserMessageID" class="btn btn-danger" onclick="return confirm('Mesajı silmek istediğinizden emin misiniz?');">
+                                                    <i class="fas fa-trash"></i> Sil
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                    @if (!Model.Any())
+                                    {
+                                        <tr>
+                                            <td colspan="8" class="text-center text-muted py-4">
+                                                <i class="fas fa-inbox me-2"></i> Hiç mesaj bulunamadı.
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

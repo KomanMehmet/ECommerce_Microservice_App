@@ -21,5 +21,7 @@
         public ServiceApi Payment { get; set; }
 
         public ServiceApi Images { get; set; }
+
+        public ServiceApi Message { get; set; }
     }
 }
