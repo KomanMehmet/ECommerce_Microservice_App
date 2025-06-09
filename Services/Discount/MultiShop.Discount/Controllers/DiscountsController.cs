@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Discount.Dtos;
 using MultiShop.Discount.Services;
+using System.Threading.Tasks;
 
 namespace MultiShop.Discount.Controllers
 {
@@ -79,6 +80,14 @@ namespace MultiShop.Discount.Controllers
                 return NotFound("Coupon bulunamadı");
             }
             return Ok(values);
+        }
+
+        [HttpGet("GetDiscountCouponCount")]
+        public async Task<IActionResult> GetDiscountCouponCount()
+        {
+            var discountCouponCount = await _discountService.GetDiscountCouponCountAsync();
+
+            return Ok(discountCouponCount);
         }
     }
 }
