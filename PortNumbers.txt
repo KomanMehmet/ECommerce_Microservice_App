@@ -9,3 +9,4 @@ Comment - 7232
 Payment - 7233
 Images - 7234
 Message - 7235
+SignalR - 7236

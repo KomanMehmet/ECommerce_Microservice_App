@@ -57,6 +57,15 @@ namespace MultiShop.WebUI.Services.MessageServices
             return values;
         }
 
+        public Task<int> GetTotalMessageByReceiverIdCountAsync(string id)
+        {
+            var response = _httpClient.GetAsync("usermessages/GetTotalMessageByReceiverIdCount/" + id);
+
+            var values = response.Result.Content.ReadFromJsonAsync<int>();
+
+            return values;
+        }
+
         public async Task UpdateMessageAsync(UpdateMessageDto updateMessageDto)
         {
             await _httpClient.PutAsJsonAsync<UpdateMessageDto>("usermessages", updateMessageDto);

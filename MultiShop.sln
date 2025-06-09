@@ -88,6 +88,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Message", "Message", "{62A8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiShop.Message", "Services\Message\MultiShop.Message\MultiShop.Message.csproj", "{C0009444-EDF4-4CF5-A225-51BA86FF5E5E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SignalRRealTime", "SignalRRealTime", "{2005FFD2-90C0-4BEB-B490-5D96C6909963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiShop.SignalRRealTimeApi", "Services\SignalRRealTime\MultiShop.SignalRRealTimeApi\MultiShop.SignalRRealTimeApi.csproj", "{CA8DA8FD-7721-4E37-B892-4EF65E12F0FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -174,6 +178,10 @@ Global
 		{C0009444-EDF4-4CF5-A225-51BA86FF5E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0009444-EDF4-4CF5-A225-51BA86FF5E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0009444-EDF4-4CF5-A225-51BA86FF5E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8DA8FD-7721-4E37-B892-4EF65E12F0FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8DA8FD-7721-4E37-B892-4EF65E12F0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8DA8FD-7721-4E37-B892-4EF65E12F0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8DA8FD-7721-4E37-B892-4EF65E12F0FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,6 +219,8 @@ Global
 		{72D5F7D9-E53F-4005-BE0D-91730720CE57} = {2E0EF67B-BA06-4F68-8B67-9D3668FDD654}
 		{62A80E91-822F-4C25-A1FA-ADC51E7A3284} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C0009444-EDF4-4CF5-A225-51BA86FF5E5E} = {62A80E91-822F-4C25-A1FA-ADC51E7A3284}
+		{2005FFD2-90C0-4BEB-B490-5D96C6909963} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{CA8DA8FD-7721-4E37-B892-4EF65E12F0FD} = {2005FFD2-90C0-4BEB-B490-5D96C6909963}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E760591A-A72C-47E8-B2C6-078229783544}
