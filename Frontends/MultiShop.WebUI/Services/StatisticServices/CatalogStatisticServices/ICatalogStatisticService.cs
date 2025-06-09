@@ -1,6 +1,6 @@
-﻿namespace MultiShop.Catalog.Services.StatisticServices
+﻿namespace MultiShop.WebUI.Services.StatisticServices.CatalogStatisticServices
 {
-    public interface IStatisticService
+    public interface ICatalogStatisticService
     {
         /// <summary>
         /// Gets the total number of products in the catalog.

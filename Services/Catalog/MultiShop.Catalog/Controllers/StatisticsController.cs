@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.Services.StatisticServices;
+using MultiShop.Catalog.Services.StatisticServices.CatalogStatisticServices;
 
 namespace MultiShop.Catalog.Controllers
 {
@@ -8,9 +9,9 @@ namespace MultiShop.Catalog.Controllers
     [ApiController]
     public class StatisticsController : ControllerBase
     {
-        private readonly IStatisticService _statisticService;
+        private readonly ICatalogStatisticService _statisticService;
 
-        public StatisticsController(IStatisticService statisticService)
+        public StatisticsController(ICatalogStatisticService statisticService)
         {
             _statisticService = statisticService;
         }

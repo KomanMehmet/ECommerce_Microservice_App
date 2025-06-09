@@ -1,18 +1,17 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 using MultiShop.Catalog.Entities;
 using MultiShop.Catalog.Settings;
 
-namespace MultiShop.Catalog.Services.StatisticServices
+namespace MultiShop.Catalog.Services.StatisticServices.CatalogStatisticServices
 {
-    public class StatisticService : IStatisticService
+    public class CatalogStatisticService : ICatalogStatisticService
     {
         private readonly IMongoCollection<Product> _productsCollection;
         private readonly IMongoCollection<Brand> _brandsCollection;
         private readonly IMongoCollection<Category> _categoriesCollection;
 
-        public StatisticService(IDatabaseSettings databaseSettings)
+        public CatalogStatisticService(IDatabaseSettings databaseSettings)
         {
             var client = new MongoClient(databaseSettings.ConnectionString);
 
